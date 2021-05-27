@@ -34,6 +34,7 @@ function App() {
       const signer = provider.getSigner()
       const contract = new ethers.Contract(greeterAddress, Greeter.abi, signer)
       const transaction = await contract.setGreeting(greeting)
+      setGreetingValue('')
       await transaction.wait()
       fetchGreeting()
     }
@@ -42,17 +43,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       <button onClick={fetchGreeting}>Fetch Greeting</button>
+       <button onClick={setGreeting}>Set Greeting</button>
+       <input onChange={e => setGreetingValue(e.target.value)} placeholder="Set greeting" value={greeting}/>
       </header>
     </div>
   );
