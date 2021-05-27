@@ -9,7 +9,8 @@ function App() {
   const [greeting, setGreetingValue] = useState();
 
   async function requestAccount() {
-    
+    //prompts user to connect their metamask account
+    await window.ethereum.request({ method: 'eth_requestAccounts' })
   }
 
   async function fetchGreeting() {
